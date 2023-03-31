@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "744371723745",
+    "project_id": "date-calculator-627c1",
+    "storage_bucket": "date-calculator-627c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744371723745:android:26f868aa7c07a73c5146a0",
+        "android_client_info": {
+          "package_name": "io.haider.datecalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744371723745-no4gjnd3v93j22b1f8dqba9dmv13q8t3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-gL2cjM3Il5ZsEVf5wd-piXo7xHs_qjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744371723745-no4gjnd3v93j22b1f8dqba9dmv13q8t3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

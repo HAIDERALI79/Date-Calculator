@@ -3,49 +3,78 @@ package io.haider.datecalculator
 import android.app.DatePickerDialog
 import android.widget.DatePicker
 import androidx.compose.material.Button
-import androidx.compose.material.Colors
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
-import kotlinx.coroutines.delay
+import androidx.compose.ui.text.input.TextFieldValue
 import java.util.*
-import kotlin.concurrent.thread
 
 class DatePicker {
     @Composable
-    fun DateTimePicker() {
+    fun DateTimePicker(userDate: DateValues) {
         val context = LocalContext.current
         val calendar = Calendar.getInstance()
-
-        var stateDay by remember { mutableStateOf("") }
-        var stateMonth by remember { mutableStateOf("") }
-        var stateYear by remember { mutableStateOf("") }
-
+//
+//       val stateDate by remember { mutableStateOf(PickerDate(
+//           day = "",
+//           month = "",
+//           year = "",
+//       ))}
+      //  var selectedDateText by remember { mutableStateOf("") }
+//        var stateYear by remember { mutableStateOf("") }
+        var pickerValues by remember {
+            mutableStateOf(
+                DateValues(
+                    TextFieldValue(),
+                    TextFieldValue(),
+                    TextFieldValue()
+                )
+            )
+        }
+        var userPickerDate by remember { mutableStateOf(userDate) }
         val year = calendar[Calendar.YEAR]
         val month = calendar[Calendar.MONTH]
         val dayOfMonth = calendar[Calendar.DAY_OF_MONTH]
         val datePicker = DatePickerDialog(
             context,
             { _: DatePicker?, selectedYear: Int, selectedMonth: Int, selectedDayOfMonth: Int ->
-             //   selectedDateText = "$selectedDayOfMonth/${selectedMonth + 1}/$selectedYear"
-             //   selectedDateText=CurrentDate.datePicked
-                stateDay="$selectedDayOfMonth"
-                stateMonth="$selectedMonth"
-                stateYear="$selectedYear"
+            //   stateDate = PickerDate(day = "$selectedDayOfMonth", month = "${selectedMonth + 1}", year = "$selectedYear")
+//                stateDate.day="$selectedDayOfMonth"
+//                stateDate.month="${selectedMonth + 1}"
+//                stateDate.year= "$selectedYear"
+                //   selectedDateText=ObjectDate.datePicked
+//                stateDay="$selectedDayOfMonth"
+//                stateMonth="$selectedMonth"
+//                stateYear="$selectedYear"
+                userPickerDate = userDate.copy(
+                    day = TextFieldValue("$selectedDayOfMonth"),
+                    month = TextFieldValue("${selectedMonth + 1}"),
+                    year = TextFieldValue("$selectedYear")
+                )
+                pickerValues = pickerValues.copy(day = TextFieldValue("$selectedDayOfMonth"))
+                pickerValues = pickerValues.copy(month = TextFieldValue("$selectedMonth"))
+                pickerValues = pickerValues.copy(year = TextFieldValue("$selectedYear"))
             }, year, month, dayOfMonth
         )
-        Text(text =ObjectDate.datePicked, style = TextStyle(
-            color = Color.Black
-        ))
-        Button(onClick = { datePicker.show()}) {
+
+        Button(onClick = {
+            datePicker.show()
+            //   stateDate="${ObjectDate.datePicked}"
+        }
+        ) {
             Text(text = "show date")
 
 
-
         }
-        println("this is a selected date:${ObjectDate.datePicked}")
+        Text(
+            text = "${pickerValues.day.text}/${pickerValues.month.text}/${pickerValues.year.text}", style = TextStyle(
+                color = Color.Black
+            )
+        )
+        // println("this is a selected date:${ObjectDate.datePicked}")
 
     }
 }
+

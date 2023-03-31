@@ -1,9 +1,5 @@
 package io.haider.datecalculator
-import android.view.WindowId.FocusObserver
-import android.view.textclassifier.TextSelection
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.FocusInteraction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.defaultMinSize
@@ -15,7 +11,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.takeOrElse
@@ -25,16 +20,14 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.substring
 import androidx.compose.ui.unit.dp
-import java.util.concurrent.locks.Lock
 
 @Composable
 fun CustomOutlinedTextField(
     modifier: Modifier = Modifier,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
-    label:String,
+    label: String,
     textStyle: TextStyle = LocalTextStyle.current,
     isError: Boolean = false,
     imeAction: ImeAction = ImeAction.Default,
@@ -68,7 +61,7 @@ fun CustomOutlinedTextField(
         BasicTextField(
             value = value,
             modifier = modifier.padding(top = OutlinedTextFieldTopPadding)
-                .size(width = 100.dp, height = 70.dp)
+               // .size(width = 100.dp, height = 70.dp)
                 .background(colors.backgroundColor(enabled = enabled).value, shape)
                 .defaultMinSize(
                     minWidth = TextFieldDefaults.MinWidth,

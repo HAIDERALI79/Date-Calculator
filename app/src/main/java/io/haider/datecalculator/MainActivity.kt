@@ -15,23 +15,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DateCalculatorTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
                     DateApp()
-
                 }
             }
         }
     }
-}
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    DateCalculatorTheme {
-        DateApp()
-    }
+
 }
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultPreview() {
+//    DateCalculatorTheme {
+//        DateApp()
+//    }
+//}

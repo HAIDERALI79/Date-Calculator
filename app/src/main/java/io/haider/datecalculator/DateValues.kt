@@ -11,19 +11,15 @@ object ObjectDate {
     val year = "${crtDate.year}"
 
 }
+object NewDate {
+    lateinit var day:TextFieldValue
+    lateinit var month:TextFieldValue
+    lateinit var year:TextFieldValue
 
-data class PickerDate(
-    var day: String,
-    var month: String,
-    var year: String,
-)
-object PickerObjects {
-    var day: String=""
-    var month: String=""
-    var year: String=""
 }
 
-data class DateValues(
+
+data class CustomDate(
     var day: TextFieldValue,
     var month: TextFieldValue,
     var year: TextFieldValue
@@ -34,10 +30,3 @@ data class PresentDate(
     val month: TextFieldValue,
     val year: TextFieldValue
 )
-
-//private val userDateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern(
-//    "d-M-u",
-//    Locale("en", "us")
-//).withResolverStyle(ResolverStyle.STRICT)
-//
-//fun formattedDate(): String = LocalDate.now().format(userDateFormatter)

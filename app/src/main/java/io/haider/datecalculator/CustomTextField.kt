@@ -1,5 +1,6 @@
 package io.haider.datecalculator
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.defaultMinSize
@@ -10,10 +11,15 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.takeOrElse
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
@@ -22,12 +28,14 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
+@OptIn(ExperimentalComposeUiApi::class)
+
 @Composable
 fun CustomOutlinedTextField(
     modifier: Modifier = Modifier,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
-    label: String,
+    label: String="",
     textStyle: TextStyle = LocalTextStyle.current,
     isError: Boolean = false,
     imeAction: ImeAction = ImeAction.Default,
@@ -41,7 +49,7 @@ fun CustomOutlinedTextField(
     shape: Shape = MaterialTheme.shapes.small,
     colors: TextFieldColors = TextFieldDefaults.outlinedTextFieldColors(),
     visualTransformation: VisualTransformation = VisualTransformation.None,
-) {
+    ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused by interactionSource.collectIsFocusedAsState()
     LaunchedEffect(isFocused) {
@@ -60,22 +68,18 @@ fun CustomOutlinedTextField(
         @OptIn(ExperimentalMaterialApi::class)
         BasicTextField(
             value = value,
-            modifier = modifier.padding(top = OutlinedTextFieldTopPadding)
-               // .size(width = 100.dp, height = 70.dp)
-                .background(colors.backgroundColor(enabled = enabled).value, shape)
+            modifier = modifier.padding(top = OutlinedTextFieldTopPadding).background(colors.backgroundColor(enabled = enabled).value, shape)
                 .defaultMinSize(
                     minWidth = TextFieldDefaults.MinWidth,
                     minHeight = TextFieldDefaults.MinHeight
                 ),
             onValueChange = onValueChange,
-            // isError = isError,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number
-            ),
+            keyboardActions = KeyboardActions(onDone =KeyboardActions.Default.onDone),
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done,keyboardType = KeyboardType.Number),
             textStyle = mergedTextStyle,
             cursorBrush = SolidColor(colors.cursorColor(isError).value),
             visualTransformation = visualTransformation,
-            keyboardActions = KeyboardActions(onAny = { onImeActionPerformed(imeAction) }),
+
             interactionSource = interactionSource,
             singleLine = singleLine,
             maxLines = maxLines,
@@ -85,7 +89,7 @@ fun CustomOutlinedTextField(
                     visualTransformation = visualTransformation,
                     innerTextField = innerTextField,
                     placeholder = placeholder,
-                    label = { Text(text = label) },
+                   label = { Text(text = label) },
                     leadingIcon = leadingIcon,
                     trailingIcon = trailingIcon,
                     singleLine = singleLine,

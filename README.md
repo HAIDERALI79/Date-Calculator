@@ -1,4 +1,4 @@
-#Welcome to the Date Calculator app, built for Android using Kotlin and Jetpack Compose!
+# Welcome to the Date Calculator app, built for Android using Kotlin and Jetpack Compose!
 
 This app is designed to help you calculate dates quickly and easily. Whether you need to find out what day of the week a certain date falls on, or how many days are between two dates, this app has got you covered.
 

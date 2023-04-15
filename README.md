@@ -7,3 +7,7 @@ To get started, simply open the app and select the type of calculation you would
 The app has been built using the latest technologies, including Kotlin and Jetpack Compose, to ensure a fast and reliable experience. It also features a sleek and modern design that is easy on the eyes and simple to navigate.
 
 Thank you for choosing the Date Calculator app, and we hope it helps make your life a little bit easier!
+
+# screenshot
+
+![Date Calculator App](/Docs/Images/dateApp.png"Date Calculator App")

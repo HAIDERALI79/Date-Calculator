@@ -1,7 +1,5 @@
 package io.haider.datecalculator
-
 import java.time.LocalDate
-
 class UserDate(
     private var date: String
 ) {
